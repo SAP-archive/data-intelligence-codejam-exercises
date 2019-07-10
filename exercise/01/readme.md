@@ -113,36 +113,35 @@ On the left in “Operator” tab scroll to the group category “CodeJam” and
 
 ## Build a graph to send the IoT data
 ### Add an “IoT device” operator
-Create a new graph.
+Switch to **Graphs** tab. Create a new graph.
 
 Search for an operator “Laptop as IoT Device” and add it to your new graph.
 
-Save the chart with parameters.
+Save the graph with parameters.
 
 |Field|Value|
 |-|-|
 |Name|`codejam.iot.mqtttcp.iotdevicepy3`|
 |Description|`IoT Device streaming on MQTT-TCP`|
-|Category|`CodeJam`|
+|Category|`CodeJam` (type it if not yet existing)|
 
-Show the Configuration of the graph. Change the **icon** to a `laptop`. Save the graph.
+Click on **Show Configuration** of the graph. Change the **icon** to a `laptop`. Save the graph.
 
 You should see an icon of the graph changed in CodeJam category.
 
 ### Add an MQTT Producer operator
 
-Switch to `JSON` view of the graph.
+Add an MQTT Producer operator to the graph. Open a configuration of MQTT Producer operator.
 
-Change the technical name of the operator from `mqttproducer1` to `mqttproducer<your-user-ID>`, where `<your-user-ID>` is a number assigned to you by a CodeJam presenter.
-
-Switch back to `Diagram` view of the chart, and open a configuration of MQTT Producer operator.
-
-You should see id that you just change in the JSON view. Modify additional parameters as following.
+Modify additional parameters as following.
 
 |Field|Value|
 |-|-|
 |mqttBroker|`tcp://test.mosquitto.org:1883`|
 |topic|`sapcodejam/<city_name>/iot/<name_of_your_computer>`, e.g. `sapcodejam/wroclaw/iot/WAWN34063733A`|
+|mqttClientID|`cjdh<location><your-user-ID>`|
+
+>For MQTT protocol to work it is extremely important that each client has a unique ID!
 
 Connect `payload` out port from “Laptop…” operator to `inmessage` in port of MQTT Producer.
 
