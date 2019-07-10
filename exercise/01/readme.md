@@ -1,24 +1,24 @@
 # Hands-on: IoT Scenario
 ## Prerequisites
 You are using SAP Data Hub 2.4, developer edition, and have both containers `datahub` and `hdfs` running. You can check it by executing
-```
+```shell
 docker ps -f "ancestor=datahub"
 ```
 ## Install psutil in datahub container
 `psutil` is a cross-platform system monitoring in Python: https://github.com/giampaolo/psutil
 
-You need to install `psutil` in `datahub` container. The container is running on openSUSE OS, so you its packages are managed by `zypper`.
+You need to install `psutil` in your `datahub` container. The container is running on openSUSE OS, so its software packages are managed by `zypper`.
 
 In your host terminal execute:
-```
-docker exec datahub zypper in --no-confirm gcc python3-pip python3-devel && pip3 install psutil
+```bash
+docker exec datahub zypper in --no-confirm gcc python3-pip python3-devel
 docker exec datahub pip3 install psutil
 docker exec datahub pip3 show psutil
 ```
 
-## Build custom operator „Laptop as IoT device”
+## Build custom operator ”Laptop as IoT device”
 ### Create a new custom operator
-Go to the Modeler window. Switch to Operators and click on Create operator icon. 
+Go to the Modeler window. Switch to **Operators** and click on **+ (Create operator)** icon.
 
 Populate fields as following:
 
@@ -32,14 +32,14 @@ Populate fields as following:
 Click **Ok**
 
 ### Configure the operator
-Add one new output port.
+Scroll to **Output Ports**. Add one new output port.
 
 |Field|Value|
 |-|-|
 |name|`payload`|
 |type|`string`|
 
-Add one new parameter.
+Scroll to **Operator Configuration -> Parameters**. Add one new parameter.
 
 |Field|Value|
 |-|-|
@@ -51,18 +51,18 @@ Under “Operator Configuration” click on **Auto Propose**.
 
 The “Type” will change to `codejam.iot.laptop`. Click edit icon **Open Type Schema** next to it.
 
-On the **Edit type** form click on `intervalMs` property and for it:
+On the **Edit type** form click on `intervalMs` property and complete configuration with:
 
 |Field|Value|
 |-|-|
 |Title|`Interval (ms)`|
-|Description|` Interval in microseconds`|
+|Description|`Interval in microseconds`|
 |Data type|`Number`|
 |Required|`True`|
 
-Click **OK**.
- 
-In **Script** paste code [same is in the file `codejam.iot.laptop.py`]
+Click **OK** to close the type configuration.
+
+Scroll to **Script** and in Inline Editor paste code [`codejam.iot.laptop.py`](codejam.iot.laptop.py)
 
 ```python
 import psutil   # https://pypi.python.org/pypi/psutil
@@ -73,7 +73,7 @@ import json
 
 def readCPU():
     return psutil.cpu_percent(percpu=False, interval=1)
-    
+
 def readMEM():
     return psutil.virtual_memory().percent
 
@@ -93,28 +93,30 @@ def do_tick():
     api.send("payload", readPayload())
 
 
-global deviceUIID 
+global deviceUIID
 deviceUIID = str(uuid.uuid1())
 
 intervalMs = int(api.config.intervalMs)
 if intervalMs < 1001:
     intervalMs = 1001
-    
+
 api.add_timer(str(intervalMs-1000)+"ms", do_tick)
 ```
 
 Click on **puzzle icon** next to the operator name and change its source to an icon `laptop`. Click **Ok**.
- 
-Save the operator and close the tab “Laptop as IoT device”.
+
+Save the operator's configuration and close the tab “Laptop as IoT device”.
 
 On the left in “Operator” tab scroll to the group category “CodeJam” and check the new operator “Laptop as IoT device” is there.
- 
+
+![Customer operator](cjdhiot030.jpg)
+
 ## Build a graph to send the IoT data
 ### Add an “IoT device” operator
 Create a new graph.
 
 Search for an operator “Laptop as IoT Device” and add it to your new graph.
- 
+
 Save the chart with parameters.
 
 |Field|Value|
@@ -122,13 +124,13 @@ Save the chart with parameters.
 |Name|`codejam.iot.mqtttcp.iotdevicepy3`|
 |Description|`IoT Device streaming on MQTT-TCP`|
 |Category|`CodeJam`|
- 
+
 Show the Configuration of the graph. Change the **icon** to a `laptop`. Save the graph.
 
 You should see an icon of the graph changed in CodeJam category.
- 
+
 ### Add an MQTT Producer operator
- 
+
 Switch to `JSON` view of the graph.
 
 Change the technical name of the operator from `mqttproducer1` to `mqttproducer<your-user-ID>`, where `<your-user-ID>` is a number assigned to you by a CodeJam presenter.
@@ -150,13 +152,13 @@ Save and run the graph.
 After some time you should see it is “running” in the “Status” tab.
 
 Click on the name of the graph there to show status details. Switch to “Metrics”. You should see “MQTT Producer Package Count” increasing from time to time.
- 
+
 If you have access to some MQTT client, then you can check messages arriving to the MQTT broker. Here is an example with the command line Mosquitto subscriber client:
 
 ```sh
 mosquitto_sub -h test.mosquitto.org -t "sapcodejam/+/iot/#" -v
 ```
- 
+
 ## Build a graph to receive the IoT data
 
 Create a new graph.
@@ -189,7 +191,7 @@ Modify other parameters of the operator as following.
 
 ### Add “HTML Viewer” and “Python3” operators
 Drag “HTML Viewer” operator to the graph. It requires generated HTML page as an input. You will use Python3 script to generate it, so drag a “Python3Operator” operator to the chart as well.
- 
+
 ### Build the code for real-time dashboard
 Right click on Python3Operator and add three ports to it.
 
@@ -200,7 +202,7 @@ The first one will be the message received from MQTT producer.
 |name|`inmsg`|
 |type|`message`|
 |direction|`Input`|
- 
+
 The second one will be the code for HTML Viewer with following parameters.
 
 |Field|Value|
@@ -232,17 +234,17 @@ locale.setlocale(locale.LC_ALL,"")
 def main(payload):
     last_timestamp = int(round(time.time()))
     ubody = payload.body.decode("utf-8") # Must be converted to Unicode first
-    
+
     #body = ast.literal_eval(ubody) #ast.literal_eval works only with strings, but can be improperly formatted JSON, like a result of str(json_object)
-    
+
     body=json.loads(ubody)
     body['loc_timestmp'] = last_timestamp
     send_blob(json.dumps([body]))
-    
+
     guid = body["guid"]
     del body["guid"]
     devices[guid] = body
-    
+
     message = ""
     message = generate_html_head(message)
     message = generate_html_body(message, last_timestamp)
@@ -318,11 +320,11 @@ def generate_html_body(message, last_timestamp):
 <h2> Prototype IoT Data Viewer </h2>
 <br>
 </center>
-<p style="margin-left:15%; margin-right:15%"> The purpose of this Graph is to serve as a stub for the HTML Viewer operator. 
+<p style="margin-left:15%; margin-right:15%"> The purpose of this Graph is to serve as a stub for the HTML Viewer operator.
 Combining the HTML Viewer with a Python Operator, it is possible to adapt IoT data for real time display in a simple and flexible manner.
 
 <br><br>
-The data structure generation is happening in the Python3 Operator, which is messaging a String containing an HTML page to the HTML Viewer 
+The data structure generation is happening in the Python3 Operator, which is messaging a String containing an HTML page to the HTML Viewer
 through WebSocket with every update. The HTML Viewer then updates the display as soon as a message is received.
 <br><br>
 </p>
@@ -351,10 +353,10 @@ Last time stamp: {}
 <td> {} </td>
 <td> {} </td>
 <td> {} %</td>
-<td> {} %</td> 
+<td> {} %</td>
 </tr>
     '''.format(
-        i, 
+        i,
         time.ctime(int(devices[i]["timestmp"])),
         locale.format("%.2f", devices[i]["cpu_load"], 1),
         locale.format("%.2f", devices[i]["mem_load"], 1)
@@ -388,13 +390,13 @@ Close the tab with the script.
 Now back in the graph’s diagram view connect following ports:
 *	`outmessage` from MQTT Consumer to `inmsg` of Python3Operator
 *	`outhtml` from Python3Operator to `in1` of HTML Viewer
- 
+
 Save and Run this graph. Check as well if “IoT Device streaming on MQTT-TCP” (`codejam.iot.mqtttcp.iotdevicepy3`) is still running. If not, then start it as well.
 
 Switch to Status Details for “Process IoT data” and then right click on “HTML Viewer” to open the UI.
- 
+
 If all processes are configured properly and running, then in the new web browser window you should get SAP Data Hub HTML Viewer. With every new update on its input port the view will be refreshed and you should see a real-time table with all the laptops (at least one – yours, if you are not working in the group) sending there CPU and Memory load radings.
- 
+
 ### Extend the graph to persist data in HDFS
 Stop the graph.
 
@@ -402,7 +404,7 @@ Now you want to persist received data as CSV files in HDFS for later historical 
 
 Data is received as a JSon payload, so it has to be reformatted to CSV format.
 
-Include **Format Converter** operator from “Utilities” category into the graph. 
+Include **Format Converter** operator from “Utilities” category into the graph.
 
 Connect `outblob` port of Python3Operator with `input` port of the Format Converter. Open configuration of the Format Converter and modify the following paramters.
 
@@ -430,7 +432,7 @@ Next open “Connection” property to edit as a “Form” and provide followin
 |User|`root`|
 
 Click **Save**.
- 
+
 Back to the Configuration of “Write File” operator and you need modify one last property as following.
 
 |Field|Value|
@@ -449,13 +451,13 @@ docker exec hdfs hdfs dfs -ls /tmp/iot
 ```
 
 The output should contain a newly created file with today’s date, like e.g. `/tmp/iot/laptops_20190524.txt`
- 
+
 Let’s see what is written to a file. Run the following command.
 
 ```sh
 docker exec hdfs hdfs dfs -cat /tmp/iot/laptops_*.txt | tail
 ```
- 
+
 This is the end of the scenario, where we built two graphs:
 1.	to simulate IoT device with CPU and Memory loads as sensors
 2.	to receive data from all IoT devices and build two processing flows in one graph:
