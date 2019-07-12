@@ -159,7 +159,7 @@ Modify additional parameters as following.
 |Field|Value|
 |-|-|
 |mqttBroker|`tcp://test.mosquitto.org:1883`|
-|topic|`sapcodejam/<city_name>/iot/<name_of_your_computer>`, e.g. `sapcodejam/wroclaw/iot/WAWN34063733A`|
+|topic|`sapcodejam/<location>/iot/<name_of_your_computer>`, e.g. `sapcodejam/wro/iot/WAWN34063733A`|
 |mqttClientID|`pcjdh<location><your-user-ID>`|
 
 >For MQTT protocol to work it is extremely important that **each client has a unique ID!**
