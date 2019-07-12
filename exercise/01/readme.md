@@ -1,7 +1,28 @@
 # Hands-on: IoT Scenario
+
+<!-- TOC depthFrom:2 depthTo:4 withLinks:1 updateOnSave:1 orderedList:0 -->
+
+- [Prerequisites](#prerequisites)
+- [Install psutil in datahub container](#install-psutil-in-datahub-container)
+- [Build custom operator ”Laptop as IoT device”](#build-custom-operator-laptop-as-iot-device)
+	- [Create a new custom operator](#create-a-new-custom-operator)
+	- [Configure the operator](#configure-the-operator)
+- [Build a graph to send the IoT data](#build-a-graph-to-send-the-iot-data)
+	- [Add an “IoT device” operator](#add-an-iot-device-operator)
+	- [Add an MQTT Producer operator](#add-an-mqtt-producer-operator)
+	- [Run the graph](#run-the-graph)
+- [Build a graph to receive the IoT data](#build-a-graph-to-receive-the-iot-data)
+	- [Add “MQTT Consumer” operator](#add-mqtt-consumer-operator)
+	- [Add “HTML Viewer” and “Python3” operators](#add-html-viewer-and-python3-operators)
+	- [Build the code for real-time dashboard](#build-the-code-for-real-time-dashboard)
+	- [Extend the graph to persist data in HDFS](#extend-the-graph-to-persist-data-in-hdfs)
+	- [Run graphs and check HDFS](#run-graphs-and-check-hdfs)
+
+<!-- /TOC -->
+
 ## Prerequisites
 You are using SAP Data Hub 2.4, developer edition, and have both containers `datahub` and `hdfs` running. You can check it by executing
-```shell
+```sh
 docker ps -f "ancestor=datahub"
 ```
 ## Install psutil in datahub container
