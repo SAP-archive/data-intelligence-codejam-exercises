@@ -13,7 +13,7 @@
 	- [Run the graph](#run-the-graph)
 	- [Run MQTT Mosquitto client (optional)](#run-mqtt-mosquitto-client-optional)
 - [Build a graph to receive the IoT data](#build-a-graph-to-receive-the-iot-data)
-	- [Add “MQTT Consumer” operator](#add-mqtt-consumer-operator)
+	- [Add an MQTT Consumer](#add-an-mqtt-consumer)
 	- [Add “HTML Viewer” and “Python3” operators](#add-html-viewer-and-python3-operators)
 	- [Build the code for real-time dashboard](#build-the-code-for-real-time-dashboard)
 	- [Extend the graph to persist data in HDFS](#extend-the-graph-to-persist-data-in-hdfs)
@@ -189,6 +189,8 @@ Now you can check messages arriving to the MQTT broker.
 docker exec mosquitto mosquitto_sub -h test.mosquitto.org -t "sapcodejam/+/iot/#" -v
 ```
 
+![Mosquitto clinet](cjdhiot050.jpg)
+
 ## Build a graph to receive the IoT data
 
 Create a new graph.
@@ -200,24 +202,26 @@ In graph’s configuration set the following.
 |description|`Process IoT data`|
 |icon|`area-chart`|
 
-Save the chart with following parameters.
+Save the graph with following parameters.
 
 |Field|Value|
 |-|-|
 |Name|`codejam.iot.mqtttcp.dataprocess`|
 |Category|`CodeJam`|
 
-### Add “MQTT Consumer” operator
+### Add an MQTT Consumer
 Add an “MQTT Consumer” operator.
 
-Change its id from ` mqttconsumer1` to ` mqttconsumer<your-user-nr>` in the JSON view. `<your-user-ID>` is a number assigned to you by a CodeJam presenter.
-
-Modify other parameters of the operator as following.
+Define parameters of the operator as following.
 
 |Field|Value|
 |-|-|
 |mqttBroker|`tcp://test.mosquitto.org:1883`|
 |topic|`sapcodejam/+/iot/#`|
+|mqttClientID|`ccjdh<location><your-user-ID>`|
+
+>For MQTT protocol to work it is extremely important that **each client has a unique ID!**
+>Please note, that for MQTT server this graph is a client different than the one sending IoT data from the previous graph.
 
 ### Add “HTML Viewer” and “Python3” operators
 Drag “HTML Viewer” operator to the graph. It requires generated HTML page as an input. You will use Python3 script to generate it, so drag a “Python3Operator” operator to the chart as well.
