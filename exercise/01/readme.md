@@ -18,6 +18,7 @@
 	- [Build the code for real-time dashboard](#build-the-code-for-real-time-dashboard)
 	- [Extend the graph to persist data in HDFS](#extend-the-graph-to-persist-data-in-hdfs)
 	- [Run graphs and check HDFS](#run-graphs-and-check-hdfs)
+- [Summary](#summary)
 
 <!-- /TOC -->
 
@@ -435,13 +436,13 @@ If all processes are configured properly and running, then in the new web browse
 ### Extend the graph to persist data in HDFS
 Stop the graph.
 
-Now you want to persist received data as CSV files in HDFS for later historical analysis.
+Now you want to persist received data in CSV files in HDFS for historical analysis.
 
 Data is received as a JSon payload, so it has to be reformatted to CSV format.
 
-Include **Format Converter** operator from “Utilities” category into the graph.
+Include “Format Converter” operator from “Utilities” category into the graph.
 
-Connect `outblob` port of Python3Operator with `input` port of the Format Converter. Open configuration of the Format Converter and modify the following paramters.
+Connect `outblob` port of Python3Operator with `input` port of the Format Converter. Open configuration of the Format Converter and modify the following parameters.
 
 |Field|Value|
 |-|-|
@@ -474,10 +475,10 @@ Back to the Configuration of “Write File” operator and you need modify one l
 |-|-|
 |Path|`/tmp/iot/laptops_<date>.txt`|
 
-### Run graphs and check HDFS
-Save and Run the graph.
+Save the graph.
 
-Make sure your other graph “IoT Device streaming…” is running as well.
+### Run graphs and check HDFS
+Run both graphs “Process IoT data” and “IoT Device streaming…”.
 
 Now you can go back to your laptop terminal, where you run `docker` commands and execute the following.
 
@@ -493,6 +494,7 @@ Let’s see what is written to a file. Run the following command.
 docker exec hdfs hdfs dfs -cat /tmp/iot/laptops_*.txt | tail
 ```
 
+## Summary
 This is the end of the scenario, where we built two graphs:
 1.	to simulate IoT device with CPU and Memory loads as sensors
 2.	to receive data from all IoT devices and build two processing flows in one graph:
