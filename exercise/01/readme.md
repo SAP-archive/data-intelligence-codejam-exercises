@@ -253,7 +253,8 @@ The third one will be the IoT data to pass to persistence storage with following
 |type|`blob`|
 |direction|`Output`|
 
-Now right click on the Python3 operator and open the script. Replace sample code with the following [as well in the file codejam.iot.mqtttcp.dataprocess.html5.py]
+Now right click on the Python3 operator and open the script. Replace sample code with the following [codejam.iot.mqtttcp.dataprocess.html5.py](codejam.iot.mqtttcp.dataprocess.html5.py).
+
 ```python
 import time
 import locale
@@ -427,9 +428,9 @@ Now back in the graph’s diagram view connect following ports:
 
 Save and Run this graph. Check as well if “IoT Device streaming on MQTT-TCP” (`codejam.iot.mqtttcp.iotdevicepy3`) is still running. If not, then start it as well.
 
-Switch to Status Details for “Process IoT data” and then right click on “HTML Viewer” to open the UI.
+Show **Status Details** for “Process IoT data” graph and then right click on “HTML Viewer” to open the UI.
 
-If all processes are configured properly and running, then in the new web browser window you should get SAP Data Hub HTML Viewer. With every new update on its input port the view will be refreshed and you should see a real-time table with all the laptops (at least one – yours, if you are not working in the group) sending there CPU and Memory load radings.
+If all processes are configured properly and running, then in the new web browser window you should get SAP **Data Hub HTML Viewer**. With every new update on its input port the view will be refreshed and you should see a real-time table with all the laptops (at least one – yours) sending there CPU and Memory load readings.
 
 ### Extend the graph to persist data in HDFS
 Stop the graph.
