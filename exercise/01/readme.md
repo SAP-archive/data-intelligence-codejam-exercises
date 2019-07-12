@@ -11,6 +11,7 @@
 	- [Add an “IoT device” operator](#add-an-iot-device-operator)
 	- [Add an MQTT Producer operator](#add-an-mqtt-producer-operator)
 	- [Run the graph](#run-the-graph)
+	- [Run MQTT Mosquitto client (optional)](#run-mqtt-mosquitto-client-optional)
 - [Build a graph to receive the IoT data](#build-a-graph-to-receive-the-iot-data)
 	- [Add “MQTT Consumer” operator](#add-mqtt-consumer-operator)
 	- [Add “HTML Viewer” and “Python3” operators](#add-html-viewer-and-python3-operators)
@@ -173,10 +174,19 @@ After some time you should see it is “running” in the “Status” tab.
 
 Click on the name of the graph there to show status details. Switch to “Metrics”. You should see “MQTT Producer Package Count” increasing from time to time.
 
-If you have access to some MQTT client, then you can check messages arriving to the MQTT broker. Here is an example with the command line Mosquitto subscriber client:
+### Run MQTT Mosquitto client (optional)
+
+Go to your terminal and run a container with a Mosquitto clint.
+```sh
+docker run -d -p 1883:1883 -p 9001:9001 --name mosquitto eclipse-mosquitto
+```
+
+If not previously installed than this command should download and start the container `mosquitto`, that includes required Mosquitto MQTT client tools.
+
+Now you can check messages arriving to the MQTT broker.
 
 ```sh
-mosquitto_sub -h test.mosquitto.org -t "sapcodejam/+/iot/#" -v
+docker exec mosquitto mosquitto_sub -h test.mosquitto.org -t "sapcodejam/+/iot/#" -v
 ```
 
 ## Build a graph to receive the IoT data
