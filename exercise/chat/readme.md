@@ -198,3 +198,9 @@ In the "Select Conversion" pop-up select the option "___Converts message to stri
 Save and run the graph.
 
 Open UI of the Histogram Plotter operator. As you (and others are typing) in the terminal you should see as well the histogram of the sentiment updated.
+
+## Summary
+This is the end of the scenario, where you built a graph to learn about:
+1. Terminal operator,
+2. Wiretap operator,
+3. Coding JavaScript custom operator and its API.
