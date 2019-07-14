@@ -35,7 +35,7 @@ First, let's check if it is already installed in your `datahub` container.
 docker exec datahub pip3 show textblob
 ```
 
-Do you need to install `psutil` in your `datahub` container? The container is running on openSUSE OS, so its software packages are managed by `zypper`.
+Do you need to install `textblob` in your `datahub` container?
 
 In your host terminal execute:
 ```bash
@@ -113,7 +113,7 @@ Connect `outmessage` out port from MQTT Consumer operator to `in1` in port of â€
 ### Run the graph
 Now you have a graph that can receive data from the MQTT server to display it in its terminal, and to send the data typed in the the terminal to the MQTT server.
 
-![Graph with MQTT operators](cjdhchat050.jpg)
+![Graph with MQTT operators](cjdhchat040.jpg)
 
 Save and run the graph.
 
@@ -189,7 +189,11 @@ Open Configuration of the Histogram operator and set the following:
 
 Now connect `histOut` of the Histogram with `in1` of the Histogram Plotter.
 
+![Select Conversion](cjdhchat080.jpg)
+
 In the "Select Conversion" pop-up select the option "___Converts message to string, concatenating the header and body into one string.___". Press **Ok**
+
+This is how final graph should look like.
 
 ![The final graph](cjdhchat090.jpg)
 
