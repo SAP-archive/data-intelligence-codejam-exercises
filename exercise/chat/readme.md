@@ -29,7 +29,7 @@ docker ps -f name=datahub
 ```
 
 ## Install textblob module in datahub container
-`textblob` is a Python module that can be used for sentiment analysis: https://github.com/...
+`textblob` is a Python module that can be used for sentiment analysis: https://textblob.readthedocs.io/
 
 First, let's check if it is already installed in your `datahub` container.
 ```sh
@@ -107,6 +107,29 @@ Define parameters of the operator as following.
 >For MQTT protocol to work it is extremely important that **each client has a unique ID!**
 >Please note, that for MQTT server this graph is a client different than the one sending IoT data from the previous graph.
 
-Connect `outmessage` out port from MQTT Consumer operator to `in1` in port of ”Terminal”. The pop-up dialog "Select Conversion" will show up. Select the option "__Converts message to string, concatenating the header and body into one string.__"
+Connect `outmessage` out port from MQTT Consumer operator to `in1` in port of ”Terminal”. The pop-up dialog "Select Conversion" will show up. Select the option "___Converts message to string, concatenating the header and body into one string.___"
 
 ![Select Conversion](cjdhchat030.jpg)
+
+### Run the graph
+Now you have a graph that can receive data from the MQTT server to display it in its terminal, and to send the data typed in the the terminal to the MQTT server.
+
+![Graph with MQTT operators](cjdhchat050.jpg)
+
+Save and run the graph.
+
+Open the terminal's UI of the running graph and chat with others!
+
+## Add sentiment analysis
+Stop the graph.
+
+Add **Sentiment Analyser** operator from "ML Examples (beta)" group and **1:2 Multiplexer** to the graph.
+
+Remove existing connection between "MQTT Consumer" and "ToString Converter". Add three connections:
+1. From MQTT Consumer's `outmessage` port to 1:2 Multiplexer's `in1` port,
+2. From 1:2 Multiplexer's `out1` port to ToString Converter's `inmessage` port,
+3. From 1:2 Multiplexer's `out1` port to Sentiment Analyser's `in` port.
+
+To see the results of Sentiment Analyser let's add Wiretap operator to the graph and connect its `in` port to analyzer's `out` port.
+
+![Graph with Sentiment Analyser operator](cjdhchat060.jpg)
