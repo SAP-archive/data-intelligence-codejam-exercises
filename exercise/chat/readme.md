@@ -29,7 +29,7 @@ docker ps -f name=datahub
 ```
 
 ## Install textblob module in datahub container
-`textblob` is a Python module that can be used for sentiment analysis: https://textblob.readthedocs.io/
+`textblob` is a Python library for processing textual data. It provides a simple API for diving into common natural language processing (NLP) tasks, incl. sentiment analysis:: https://textblob.readthedocs.io/
 
 First, let's check if it is already installed in your `datahub` container.
 ```sh
@@ -133,3 +133,68 @@ Remove existing connection between "MQTT Consumer" and "ToString Converter". Add
 To see the results of Sentiment Analyser let's add Wiretap operator to the graph and connect its `in` port to analyzer's `out` port.
 
 ![Graph with Sentiment Analyser operator](cjdhchat060.jpg)
+
+### Run the graph
+Save and run the graph.
+
+Type some sentences (e.g. what you think about the CodeJam) in terminal.
+
+Open UI of the Wiretap, and see results of sentiment analysis there. The ___polarity___ score is a number within the range [-1.0, 1.0]. The ___subjectivity___ is a number within the range [0.0, 1.0] where 0.0 is very objective and 1.0 is very subjective.
+
+![Graph with Sentiment Analyser operator](cjdhchat070.jpg)
+
+## Add sentiment plotter
+Let's visualize sentiment scores aggregated into the 5 groups: "very negative", "negative", "neutral", "positive", "very positive".
+
+### Add JS custom operator
+You need to extract only polarity number from the Sentiment Analyser, and for that you will need a custom operator. This time you will use a JavaScript operator. So, add "Blank JS Operator" to the chart.
+
+Add two ports to that JS operator:
+
+Name|Type|Direction
+|-|-|-|
+|`in`|`message`|Input
+|`out`|`float64`|Output
+
+Open Script of the operator and paste the following code.
+
+```JavaScript
+$.setPortCallback("in",onInput);
+
+function onInput(ctx,s) {
+
+    $.out(s.Attributes["polarity"]);
+}
+```
+
+This code is simple, but shows important elements of the API of the custom JS operator:
+1. For every input on the port `in` the `onInput` callback function is called,
+2. Only `polarity` attribute of the received `s` received on the input port is then sent to the `out` port.
+
+Connect Wiretap's `out` port to `in` port of Blank JS Operator.
+
+### Add Histogram operators
+You will use use built-in Histogram Plotter. Two operators from Utilities group are required for that, so add them to the graph:
+1. Histogram Plotter
+2. Histogram
+
+Connect `out` port of Blank JS Operator to `histIn` port of Histogram operator.
+
+Open Configuration of the Histogram operator and set the following:
+
+|Field|Value|
+|-|-|
+|`nBins`|5|
+|`rangeMax`|1|
+|`rangeMin`|-1|
+
+Now connect `histOut` of the Histogram with `in1` of the Histogram Plotter.
+
+In the "Select Conversion" pop-up select the option "___Converts message to string, concatenating the header and body into one string.___". Press **Ok**
+
+![The final graph](cjdhchat090.jpg)
+
+### Run the graph
+Save and run the graph.
+
+Open UI of the Histogram Plotter operator. As you (and others are typing) in the terminal you should see as well the histogram of the sentiment updated.
