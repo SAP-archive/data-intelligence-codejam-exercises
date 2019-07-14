@@ -162,7 +162,7 @@ Modify additional parameters as following.
 |-|-|
 |mqttBroker|`tcp://test.mosquitto.org:1883`|
 |topic|`sapcodejam/<location>/iot/<name_of_your_computer>`, e.g. `sapcodejam/wro/iot/WAWN34063733A`|
-|mqttClientID|`pcjdh<location><your-user-ID>`|
+|mqttClientID|`pcjdhi<location><your-user-ID>`|
 
 >For MQTT protocol to work it is extremely important that **each client has a unique ID!**
 
@@ -219,7 +219,7 @@ Define parameters of the operator as following.
 |-|-|
 |mqttBroker|`tcp://test.mosquitto.org:1883`|
 |topic|`sapcodejam/+/iot/#`|
-|mqttClientID|`ccjdh<location><your-user-ID>`|
+|mqttClientID|`ccjdhi<location><your-user-ID>`|
 
 >For MQTT protocol to work it is extremely important that **each client has a unique ID!**
 >Please note, that for MQTT server this graph is a client different than the one sending IoT data from the previous graph.
