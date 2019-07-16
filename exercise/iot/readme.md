@@ -85,7 +85,7 @@ On the **Edit type** form click on `intervalMs` property and complete configurat
 
 Click **OK** to close the type configuration.
 
-Scroll to **Script** and in Inline Editor paste code [`codejam.iot.laptop.py`](codejam.iot.laptop.py)
+Scroll to **Script** and in Inline Editor paste code [`codejam.iot.laptop.py`](code/codejam.iot.laptop.py)
 
 ```python
 import psutil   # https://pypi.python.org/pypi/psutil
@@ -132,7 +132,7 @@ Save the operator's configuration and close the tab “Laptop as IoT device”.
 
 On the left in “Operator” tab scroll to the group category “CodeJam” and check the new operator “Laptop as IoT device” is there.
 
-![Customer operator](cjdhiot030.jpg)
+![Customer operator](images/cjdhiot030.jpg)
 
 ## Build a graph to send the IoT data
 ### Add an “IoT device” operator
@@ -190,7 +190,7 @@ Now you can check messages arriving to the MQTT broker.
 docker exec mosquitto mosquitto_sub -h test.mosquitto.org -t "sapcodejam/+/iot/#" -v
 ```
 
-![Mosquitto clinet](cjdhiot050.jpg)
+![Mosquitto clinet](images/cjdhiot050.jpg)
 
 ## Build a graph to receive the IoT data
 
@@ -254,7 +254,7 @@ The third one will be the IoT data to pass to persistence storage with following
 |type|`blob`|
 |direction|`Output`|
 
-Now right click on the Python3 operator and open the script. Replace sample code with the following [codejam.iot.mqtttcp.dataprocess.html5.py](codejam.iot.mqtttcp.dataprocess.html5.py).
+Now right click on the Python3 operator and open the script. Replace sample code with the following [codejam.iot.mqtttcp.dataprocess.html5.py](code/codejam.iot.mqtttcp.dataprocess.html5.py).
 
 ```python
 import time
