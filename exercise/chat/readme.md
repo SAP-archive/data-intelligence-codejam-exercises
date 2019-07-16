@@ -32,14 +32,14 @@ docker ps -f name=datahub
 
 First, let's check if it is already installed in your `datahub` container.
 ```sh
-docker exec datahub pip3 show textblob
+docker exec datahub pip show textblob
 ```
 
 Do you need to install `textblob` in your `datahub` container?
 
 In your host terminal execute:
 ```bash
-docker exec datahub pip3 install textblob
+docker exec datahub pip install textblob
 ```
 
 ## Create a new graph with Terminal only
