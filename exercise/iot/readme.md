@@ -177,7 +177,7 @@ Click on the name of the graph there to show status details. Switch to “Metric
 
 ### Run MQTT Mosquitto client (optional)
 
-Go to your terminal and run a container with a Mosquitto clint.
+Go to your terminal and run a container with a Mosquitto client.
 ```sh
 docker run -d -p 1883:1883 -p 9001:9001 --name mosquitto eclipse-mosquitto
 ```
@@ -434,7 +434,7 @@ Show **Status Details** for “Process IoT data” graph and then right click on
 If all processes are configured properly and running, then in the new web browser window you should get SAP **Data Hub HTML Viewer**. With every new update on its input port the view will be refreshed and you should see a real-time table with all the laptops (at least one – yours) sending there CPU and Memory load readings.
 
 ### Extend the graph to persist data in HDFS
-Stop the graph.
+Stop the graph "Process IoT data".
 
 Now you want to persist received data in CSV files in HDFS for historical analysis.
 
