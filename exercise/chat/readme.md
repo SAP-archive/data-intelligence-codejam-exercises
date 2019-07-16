@@ -108,12 +108,12 @@ Define parameters of the operator as following.
 
 Connect `outmessage` out port from MQTT Consumer operator to `in1` in port of ”Terminal”. The pop-up dialog "Select Conversion" will show up. Select the option "___Converts message to string, concatenating the header and body into one string.___"
 
-![Select Conversion](cjdhchat030.jpg)
+![Select Conversion](images/cjdhchat030.jpg)
 
 ### Run the graph
 Now you have a graph that can receive data from the MQTT server to display it in its terminal, and to send the data typed in the the terminal to the MQTT server.
 
-![Graph with MQTT operators](cjdhchat040.jpg)
+![Graph with MQTT operators](images/cjdhchat040.jpg)
 
 Save and run the graph.
 
@@ -131,7 +131,7 @@ Remove existing connection between "MQTT Consumer" and "ToString Converter". Add
 
 To see the results of Sentiment Analyser let's add Wiretap operator to the graph and connect its `in` port to analyzer's `out` port.
 
-![Graph with Sentiment Analyser operator](cjdhchat060.jpg)
+![Graph with Sentiment Analyser operator](images/cjdhchat060.jpg)
 
 ### Run the graph
 Save and run the graph.
@@ -140,7 +140,7 @@ Type some sentences (e.g. what you think about the CodeJam) in terminal.
 
 Open UI of the Wiretap, and see results of sentiment analysis there. The ___polarity___ score is a number within the range [-1.0, 1.0]. The ___subjectivity___ is a number within the range [0.0, 1.0] where 0.0 is very objective and 1.0 is very subjective.
 
-![Graph with Sentiment Analyser operator](cjdhchat070.jpg)
+![Graph with Sentiment Analyser operator](images/cjdhchat070.jpg)
 
 ## Add sentiment plotter
 Let's visualize sentiment scores aggregated into the 5 groups: "very negative", "negative", "neutral", "positive", "very positive".
@@ -155,7 +155,7 @@ Name|Type|Direction
 |`in`|`message`|Input
 |`out`|`float64`|Output
 
-Open Script of the operator and paste the following code.
+Open Script of the operator and paste the following code from file [chat.sentiment.js](code/chat.sentiment.js).
 
 ```JavaScript
 $.setPortCallback("in",onInput);
@@ -189,13 +189,13 @@ Open Configuration of the Histogram operator and set the following:
 
 Now connect `histOut` of the Histogram with `in1` of the Histogram Plotter.
 
-![Select Conversion](cjdhchat080.jpg)
+![Select Conversion](images/cjdhchat080.jpg)
 
 In the "Select Conversion" pop-up select the option "___Converts message to string, concatenating the header and body into one string.___". Press **Ok**
 
 This is how final graph should look like.
 
-![The final graph](cjdhchat090.jpg)
+![The final graph](images/cjdhchat090.jpg)
 
 ### Run the graph
 Save and run the graph.
