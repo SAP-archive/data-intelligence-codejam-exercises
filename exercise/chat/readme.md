@@ -45,8 +45,6 @@ docker exec datahub pip install textblob
 ## Create a new graph with Terminal only
 In SAP Data Hub Modeller go to **Graphs** tab. Create a new graph.
 
-Search for an operator “Laptop as IoT Device” and add it to your new graph.
-
 Save the graph with parameters.
 
 |Field|Value|
