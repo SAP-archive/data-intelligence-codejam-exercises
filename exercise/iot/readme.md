@@ -175,7 +175,7 @@ After some time you should see it is “running” in the “Status” tab.
 
 Click on the name of the graph there to show status details. Switch to “Metrics”. You should see “MQTT Producer Package Count” increasing from time to time.
 
-### Run MQTT Mosquitto client (optional)
+### [Optional] Run MQTT Mosquitto client
 
 Go to your terminal and run a container with a Mosquitto client.
 ```sh
@@ -433,7 +433,7 @@ Show **Status Details** for “Process IoT data” graph and then right click on
 
 If all processes are configured properly and running, then in the new web browser window you should get SAP **Data Hub HTML Viewer**. With every new update on its input port the view will be refreshed and you should see a real-time table with all the laptops (at least one – yours) sending there CPU and Memory load readings.
 
-### Extend the graph to persist data in HDFS
+## [Optional] Extend the graph to persist data in HDFS
 Stop the graph "Process IoT data".
 
 Now you want to persist received data in CSV files in HDFS for historical analysis.
