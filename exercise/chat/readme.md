@@ -82,7 +82,7 @@ Modify additional parameters as following.
 
 |Field|Value|
 |-|-|
-|mqttBroker|`tcp://test.mosquitto.org:1883`|
+|mqttBroker|`tcp://mqtt.eclipse.org:1883` ~~`tcp://test.mosquitto.org:1883`~~|
 |topic|`sapcodejam/<location>/chat/<your_name>`, e.g. `sapcodejam/wro/chat/Vitaliy`|
 |mqttClientID|`pcjdhc<location><your-user-ID>`|
 
@@ -97,7 +97,7 @@ Define parameters of the operator as following.
 
 |Field|Value|
 |-|-|
-|mqttBroker|`tcp://test.mosquitto.org:1883`|
+|mqttBroker|`tcp://mqtt.eclipse.org:1883` ~~`tcp://test.mosquitto.org:1883`~~|
 |topic|`sapcodejam/+/chat/#`|
 |mqttClientID|`ccjdhc<location><your-user-ID>`|
 
