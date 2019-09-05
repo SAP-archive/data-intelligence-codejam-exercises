@@ -160,7 +160,7 @@ Modify additional parameters as following.
 
 |Field|Value|
 |-|-|
-|mqttBroker|`tcp://test.mosquitto.org:1883`|
+|mqttBroker|`tcp://mqtt.eclipse.org:1883` ~~`tcp://test.mosquitto.org:1883`~~|
 |topic|`sapcodejam/<location>/iot/<name_of_your_computer>`, e.g. `sapcodejam/wro/iot/WAWN34063733A`|
 |mqttClientID|`pcjdhi<location><your-user-ID>`|
 
@@ -217,7 +217,7 @@ Define parameters of the operator as following.
 
 |Field|Value|
 |-|-|
-|mqttBroker|`tcp://test.mosquitto.org:1883`|
+|mqttBroker|`tcp://mqtt.eclipse.org:1883` ~~`tcp://test.mosquitto.org:1883`~~|
 |topic|`sapcodejam/+/iot/#`|
 |mqttClientID|`ccjdhi<location><your-user-ID>`|
 
