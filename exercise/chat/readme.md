@@ -30,7 +30,12 @@ docker ps -f name=datahub
 ## Install textblob module in datahub container
 `textblob` is a Python library for processing textual data. It provides a simple API for diving into common natural language processing (NLP) tasks, incl. sentiment analysis:: https://textblob.readthedocs.io/
 
-First, let's check if it is already installed in your `datahub` container.
+First, let's upgrade `pip` in your `datahub` container to avoid further warning messages.
+```sh
+pip install --upgrade pip
+```
+
+Second, let's check if it is already installed in your `datahub` container. Empty output from the below command would mean `textblob` is not installed.
 ```sh
 docker exec datahub pip show textblob
 ```
@@ -38,7 +43,7 @@ docker exec datahub pip show textblob
 Do you need to install `textblob` in your `datahub` container?
 
 In your host terminal execute:
-```bash
+```sh
 docker exec datahub pip install textblob
 ```
 
