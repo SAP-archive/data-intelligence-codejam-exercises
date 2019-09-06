@@ -1,9 +1,9 @@
-##Connect Tessel2 to Wi-Fi
+## Connect Tessel2 to Wi-Fi
 ```sh
 t2 wifi -n <network-name> -p <password>
 ```
 
-##Run script
+## Run script
 ```javascript
 // Code by Michał Korzeń && Vitaliy Rudnytskiy
 var mqtt = require('mqtt'),
