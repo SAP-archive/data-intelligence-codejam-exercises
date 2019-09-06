@@ -43,9 +43,7 @@ Add an “Wiretap” operator.
 Connect `outmessage` out port from "MQTT Consumer" operator to `in` in port of "Wiretap".
 
 ### Run the graph
-Now you have a graph that can receive data from the MQTT server to display it in its terminal, and to send the data typed in the the terminal to the MQTT server.
-
-![Graph with MQTT operators](images/cjdhchat040.jpg)
+Now you have a graph that can receive data from the MQTT server to display it in wiretap.
 
 Save and run the graph.
 
