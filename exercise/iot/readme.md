@@ -187,7 +187,7 @@ If not previously installed than this command should download and start the cont
 Now you can check messages arriving to the MQTT broker.
 
 ```sh
-docker exec mosquitto mosquitto_sub -h test.mosquitto.org -t "sapcodejam/+/iot/#" -v
+docker exec mosquitto mosquitto_sub -h mqtt.eclipse.org -t "sapcodejam/+/iot/#" -v
 ```
 
 ![Mosquitto clinet](images/cjdhiot050.jpg)
