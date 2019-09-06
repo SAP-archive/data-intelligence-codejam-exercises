@@ -32,7 +32,7 @@ docker ps -f name=datahub
 
 First, let's upgrade `pip` in your `datahub` container to avoid further warning messages.
 ```sh
-pip install --upgrade pip
+docker exec datahub pip install --upgrade pip
 ```
 
 Second, let's check if it is already installed in your `datahub` container. Empty output from the below command would mean `textblob` is not installed.
