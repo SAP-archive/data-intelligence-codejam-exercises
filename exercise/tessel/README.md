@@ -37,8 +37,10 @@ Define parameters of the operator as following.
 
 >For MQTT protocol to work it is extremely important that **each client has a unique ID!**
 
-##Add Wiretap operator
-Connect `outmessage` out port from MQTT Consumer operator to `in` in port of ”Wiretap”.
+## Add Wiretap operator
+Add an “Wiretap” operator.
+
+Connect `outmessage` out port from "MQTT Consumer" operator to `in` in port of "Wiretap".
 
 ### Run the graph
 Now you have a graph that can receive data from the MQTT server to display it in its terminal, and to send the data typed in the the terminal to the MQTT server.
