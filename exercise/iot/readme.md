@@ -155,11 +155,13 @@ Save the graph with parameters.
 
 Click on **Show Configuration** of the graph. Change the **icon** to a `laptop`. Save the graph.
 
-You should see an icon of the graph changed in CodeJam category.
+You should see an icon of the graph changed in **CodeJam** category.
+
+![Graph with the new icon](images/cjdhiot040.png)
 
 ### Add an MQTT Producer operator
 
-Add an MQTT Producer operator to the graph. Open a configuration of MQTT Producer operator.
+Add an **MQTT Producer** operator to the graph. Open a configuration of this operator.
 
 Modify additional parameters as following.
 
@@ -167,7 +169,7 @@ Modify additional parameters as following.
 |-|-|
 |mqttBroker|`tcp://mqtt.eclipse.org:1883` ~~`tcp://test.mosquitto.org:1883`~~|
 |topic|`sapcodejam/<location>/iot/<name_of_your_computer>`, e.g. `sapcodejam/wro/iot/WAWN34063733A`|
-|mqttClientID|`pcjdhi<location><your-user-ID>`|
+|mqttClientID|`pcjdhi<location><your-user-ID>`, e.g. `pcjdhiwro00`|
 
 >For MQTT protocol to work it is extremely important that **each client has a unique ID!**
 
@@ -176,20 +178,23 @@ Connect `payload` out port from “Laptop…” operator to `inmessage` in port 
 ### Run the graph
 Save and run the graph.
 
-After some time you should see it is “running” in the “Status” tab.
+After some time you should see it is “running” in the **Status** tab.
 
-Click on the name of the graph there to show status details. Switch to “Metrics”. You should see “MQTT Producer Package Count” increasing from time to time.
+Click on the name of the graph there to show status details.
+
+Now switch to **Metrics** tab. You should see “MQTT Producer Package Count” increasing from time to time.
 
 ### [Optional] Run MQTT Mosquitto client
 
-Go to your terminal and run a container with a Mosquitto client.
+Go to your terminal and run a container with a [Mosquitto software](https://mosquitto.org/), which contains popular mosquitto_pub and mosquitto_sub command line MQTT clients.
+
 ```sh
 docker run -d -p 1883:1883 -p 9001:9001 --name mosquitto eclipse-mosquitto
 ```
 
-If not previously installed than this command should download and start the container `mosquitto`, that includes required Mosquitto MQTT client tools.
+If not previously pulled, then this command should download and start the container `mosquitto`, that includes required Mosquitto MQTT client tools.
 
-Now you can check messages arriving to the MQTT broker.
+Now you can check messages arriving to the MQTT broker using [`mosquitto_sub` client](https://mosquitto.org/man/mosquitto_sub-1.html).
 
 ```sh
 docker exec mosquitto mosquitto_sub -h mqtt.eclipse.org -t "sapcodejam/+/iot/#" -v
