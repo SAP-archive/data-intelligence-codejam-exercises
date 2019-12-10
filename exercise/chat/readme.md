@@ -135,7 +135,7 @@ Remove existing connection between "MQTT Consumer" and "ToString Converter". Add
 2. From 1:2 Multiplexer's `out1` port to ToString Converter's `inmessage` port,
 3. From 1:2 Multiplexer's `out1` port to Sentiment Analyser's `in` port.
 
-To see the results of Sentiment Analyser let's add Wiretap operator to the graph and connect its `in` port to analyzer's `out` port.
+To see the results of Sentiment Analyser let's add **Wiretap** operator to the graph and connect its `in` port to analyzer's `out` port.
 
 ![Graph with Sentiment Analyser operator](images/cjdhchat060.jpg)
 
