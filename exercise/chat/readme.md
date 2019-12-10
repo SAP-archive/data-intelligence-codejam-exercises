@@ -28,21 +28,20 @@ docker ps -f name=datahub
 ```
 
 ## Install textblob module in datahub container
-`textblob` is a Python library for processing textual data. It provides a simple API for diving into common natural language processing (NLP) tasks, incl. sentiment analysis:: https://textblob.readthedocs.io/
+In this hands-on you are going to use `textblob` -- a Python library for processing textual data. It provides a simple API for diving into common natural language processing (NLP) tasks, incl. sentiment analysis: https://textblob.readthedocs.io/
 
 First, let's upgrade `pip` in your `datahub` container to avoid further warning messages.
 ```sh
 docker exec datahub pip install --upgrade pip
 ```
 
-Second, let's check if it is already installed in your `datahub` container. Empty output from the below command would mean `textblob` is not installed.
+Second, let's check if it is already installed in your `datahub` container.
 ```sh
 docker exec datahub pip show textblob
 ```
+Please ignore `Python 2.7 will reach the end of its life on January 1st, 2020.` warning.
 
-Do you need to install `textblob` in your `datahub` container?
-
-In your host terminal execute:
+Do you need to install `textblob` in your `datahub` container? If yes, then in your host terminal execute:
 ```sh
 docker exec datahub pip install textblob
 ```
@@ -74,14 +73,18 @@ After some time you should see it is “running” in the “Status” tab.
 
 Click on the name of the graph there to show status details.
 
-Right-click on Terminal operator and open its run-time UI.
+Right-click on **Terminal** operator and open its run-time UI.
 
 In Terminal UI you can see the text you type is sent to the out port. And then immediately received on the in port and displayed.
+
+Stop the running graph.
 
 ## Add MQTT operators
 ### Add an MQTT Producer operator
 
-Add an MQTT Producer operator to the graph. Open a configuration of MQTT Producer operator.
+Make sure you are in design-time view of the graph.
+
+Add an **MQTT Producer** operator to the graph. Open a configuration of this added operator.
 
 Modify additional parameters as following.
 
@@ -89,14 +92,14 @@ Modify additional parameters as following.
 |-|-|
 |mqttBroker|`tcp://mqtt.eclipse.org:1883` ~~`tcp://test.mosquitto.org:1883`~~|
 |topic|`sapcodejam/<location>/chat/<your_name>`, e.g. `sapcodejam/wro/chat/Vitaliy`|
-|mqttClientID|`pcjdhc<location><your-user-ID>`|
+|mqttClientID|`pcjdhc<location><your-user-ID>`, e.g. `pcjdhcwro00`|
 
->For MQTT protocol to work it is extremely important that **each client has a unique ID!**
+>It is extremely important that **each client has a unique ID** for MQTT protocol to work properly!
 
 Connect `out1` out port from ”Terminal” operator to `inmessage` in port of MQTT Producer.
 
 ### Add an MQTT Consumer
-Add an “MQTT Consumer” operator.
+Add an **MQTT Consumer** operator.
 
 Define parameters of the operator as following.
 
@@ -104,9 +107,9 @@ Define parameters of the operator as following.
 |-|-|
 |mqttBroker|`tcp://mqtt.eclipse.org:1883` ~~`tcp://test.mosquitto.org:1883`~~|
 |topic|`sapcodejam/+/chat/#`|
-|mqttClientID|`ccjdhc<location><your-user-ID>`|
+|mqttClientID|`ccjdhc<location><your-user-ID>`, e.g. ccjdhcwro00|
 
->For MQTT protocol to work it is extremely important that **each client has a unique ID!**
+>It is extremely important that **each client has a unique ID** for MQTT protocol to work properly!
 >Please note, that for MQTT server this graph is a client different than the one sending IoT data from the previous graph.
 
 Connect `outmessage` out port from MQTT Consumer operator to `in1` in port of ”Terminal”. The pop-up dialog "Select Conversion" will show up. Select the option "___Converts message to string, concatenating the header and body into one string.___"
@@ -114,7 +117,7 @@ Connect `outmessage` out port from MQTT Consumer operator to `in1` in port of �
 ![Select Conversion](images/cjdhchat030.jpg)
 
 ### Run the graph
-Now you have a graph that can receive data from the MQTT server to display it in its terminal, and to send the data typed in the the terminal to the MQTT server.
+Now you have a graph that will receive data from the MQTT server to display it in its terminal, and will send the data typed in the terminal to the MQTT server.
 
 ![Graph with MQTT operators](images/cjdhchat040.jpg)
 
