@@ -35,6 +35,7 @@ You need to install `psutil` in your `datahub` container. The container is runni
 In your host terminal execute:
 ```bash
 docker exec datahub zypper in --no-confirm gcc python3-pip python3-devel
+docker exec datahub pip install --upgrade pip
 docker exec datahub pip3 install psutil
 docker exec datahub pip3 show psutil
 ```
@@ -126,7 +127,11 @@ if intervalMs < 1001:
 api.add_timer(str(intervalMs-1000)+"ms", do_tick)
 ```
 
-Click on **puzzle icon** next to the operator name and change its source to an icon `laptop`. Click **Ok**.
+Click on an area (or puzzle **icon**) next to the operator name...
+
+![Custom operator icon[(images/cjdhiot020.png)
+
+...and change its source to an icon `laptop`. Click **Ok**.
 
 Save the operator's configuration and close the tab “Laptop as IoT device”.
 
