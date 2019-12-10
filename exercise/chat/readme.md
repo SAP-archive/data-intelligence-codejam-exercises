@@ -152,7 +152,9 @@ Open UI of the Wiretap, and see results of sentiment analysis there. The ___pola
 Let's visualize sentiment scores aggregated into the 5 groups: "very negative", "negative", "neutral", "positive", "very positive".
 
 ### Add JS custom operator
-You need to extract only polarity number from the Sentiment Analyser, and for that you will need a custom operator. This time you will use a JavaScript operator. So, add "Blank JS Operator" to the chart.
+You need to extract only polarity number from the Sentiment Analyser, and for that you will need a custom operator. 
+
+This time you will use a JavaScript operator. So, add **Blank JS Operator** to the chart.
 
 Add two ports to that JS operator:
 
@@ -166,26 +168,26 @@ Open Script of the operator and paste the following code from file [chat.sentime
 ```JavaScript
 $.setPortCallback("in",onInput);
 
-function onInput(ctx,s) {
+function onInput(ctx,str) {
 
-    $.out(s.Attributes["polarity"]);
+    $.out(str.Attributes["polarity"]);
 }
 ```
 
 This code is simple, but shows important elements of the API of the custom JS operator:
 1. For every input on the port `in` the `onInput` callback function is called,
-2. Only `polarity` attribute of the received `s` received on the input port is then sent to the `out` port.
+2. Only `polarity` attribute of the received `str` received on the input port is then sent to the `out` port.
 
 Connect Wiretap's `out` port to `in` port of Blank JS Operator.
 
 ### Add Histogram operators
 You will use use built-in Histogram Plotter. Two operators from Utilities group are required for that, so add them to the graph:
-1. Histogram Plotter
-2. Histogram
+1. **Histogram Plotter**
+2. **Histogram**
 
-Connect `out` port of Blank JS Operator to `histIn` port of Histogram operator.
+Connect `out` port of **Blank JS Operator** to `histIn` port of **Histogram** operator.
 
-Open Configuration of the Histogram operator and set the following:
+Open Configuration of the **Histogram** operator and set the following:
 
 |Field|Value|
 |-|-|
@@ -193,7 +195,7 @@ Open Configuration of the Histogram operator and set the following:
 |`rangeMax`|1|
 |`rangeMin`|-1|
 
-Now connect `histOut` of the Histogram with `in1` of the Histogram Plotter.
+Now connect `histOut` of the **Histogram** with `in1` of the **Histogram Plotter**.
 
 ![Select Conversion](images/cjdhchat080.jpg)
 
@@ -206,7 +208,7 @@ This is how final graph should look like.
 ### Run the graph
 Save and run the graph.
 
-Open UI of the Histogram Plotter operator. As you (and others are typing) in the terminal you should see as well the histogram of the sentiment updated.
+**Open UI** of the Histogram Plotter operator. As you (and others are typing) in the terminal's UI the histogram of the chat's sentiment is updated.
 
 ## Summary
 This is the end of the scenario, where you built a graph to learn about:
