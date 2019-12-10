@@ -129,13 +129,13 @@ api.add_timer(str(intervalMs-1000)+"ms", do_tick)
 
 Click on an area (or puzzle **icon**) next to the operator name...
 
-![Custom operator icon[(images/cjdhiot020.png)
+![Custom operator icon](images/cjdhiot020.png)
 
 ...and change its source to an icon `laptop`. Click **Ok**.
 
 Save the operator's configuration and close the tab “Laptop as IoT device”.
 
-On the left in “Operator” tab scroll to the group category “CodeJam” and check the new operator “Laptop as IoT device” is there.
+On the left in “Operators” tab scroll to the group category “CodeJam” and check the new operator **Laptop as IoT device** is there.
 
 ![Customer operator](images/cjdhiot030.jpg)
 
