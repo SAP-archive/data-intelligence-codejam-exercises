@@ -221,7 +221,7 @@ Save the graph with following parameters.
 |Category|`CodeJam`|
 
 ### Add an MQTT Consumer
-Add an “MQTT Consumer” operator.
+Add an **MQTT Consumer** operator.
 
 Define parameters of the operator as following.
 
@@ -229,16 +229,16 @@ Define parameters of the operator as following.
 |-|-|
 |mqttBroker|`tcp://mqtt.eclipse.org:1883` ~~`tcp://test.mosquitto.org:1883`~~|
 |topic|`sapcodejam/+/iot/#`|
-|mqttClientID|`ccjdhi<location><your-user-ID>`|
+|mqttClientID|`ccjdhi<location><your-user-ID>`, e.g. `ccjdhiwaw00`|
 
 >For MQTT protocol to work it is extremely important that **each client has a unique ID!**
 >Please note, that for MQTT server this graph is a client different than the one sending IoT data from the previous graph.
 
 ### Add “HTML Viewer” and “Python3” operators
-Drag “HTML Viewer” operator to the graph. It requires generated HTML page as an input. You will use Python3 script to generate it, so drag a “Python3Operator” operator to the chart as well.
+Drag **HTML Viewer** operator to the graph. It requires generated HTML page as an input. You will use Python3 script to generate it, so drag a **Python3Operator** operator to the chart as well.
 
 ### Build the code for real-time dashboard
-Right click on Python3Operator and add three ports to it.
+Right click on **Python3Operator** and add three ports to it.
 
 The first one will be the message received from MQTT producer.
 
@@ -444,28 +444,28 @@ Show **Status Details** for “Process IoT data” graph and then right click on
 If all processes are configured properly and running, then in the new web browser window you should get SAP **Data Hub HTML Viewer**. With every new update on its input port the view will be refreshed and you should see a real-time table with all the laptops (at least one – yours) sending there CPU and Memory load readings.
 
 ## [Optional] Extend the graph to persist data in HDFS
-Stop the graph "Process IoT data".
+Stop the graph **Process IoT data**.
 
 Now you want to persist received data in CSV files in HDFS for historical analysis.
 
 Data is received as a JSon payload, so it has to be reformatted to CSV format.
 
-Include “Format Converter” operator from “Utilities” category into the graph.
+Include **Format Converter** operator from **Utilities** category into the graph.
 
-Connect `outblob` port of Python3Operator with `input` port of the Format Converter. Open configuration of the Format Converter and modify the following parameters.
+Connect `outblob` port of **Python3Operator** with `input` port of the **Format Converter**. Open configuration of the **Format Converter** and modify the following parameters.
 
 |Field|Value|
 |-|-|
 |Target Format|`CSV`|
 |Fields|`guid,timestmp,cpu_load,mem_load,loc_timestmp`|
 
-These are the keys of JSon documents that arrive from Python3Operator. And we will extract only values and save them to a file.
+These are the keys of JSon documents that arrive from **Python3Operator**. And we will extract only values and save them to a file.
 
-Add operator “Write File”.
+Add operator **Write File**.
 
-Connect out port `output` of “Format Converter” to the in port `inFile` of “Write File”.
+Connect out port `output` of “Format Converter” to the in port `inFile` of **Write File**.
 
-Open Configuration of “Write File” operator and change “service” to `hdfs`.
+Open Configuration of **Write File** operator and change “service” to `hdfs`.
 
 Next open “Connection” property to edit as a “Form” and provide following connection parameters.
 
@@ -477,9 +477,11 @@ Next open “Connection” property to edit as a “Form” and provide followin
 |Protocol|`rpc`|
 |User|`root`|
 
+
+
 Click **Save**.
 
-Back to the Configuration of “Write File” operator and you need modify one last property as following.
+Back to the Configuration of **Write File** operator and you need modify one last property as following.
 
 |Field|Value|
 |-|-|
