@@ -477,11 +477,11 @@ Next open “Connection” property to edit as a “Form” and provide followin
 |Protocol|`rpc`|
 |User|`root`|
 
-
+![HDFS connection string](images/cjdhiot060.png)
 
 Click **Save**.
 
-Back to the Configuration of **Write File** operator and you need modify one last property as following.
+Back to the Configuration of **Write File** operator, where you need to modify one last property as following.
 
 |Field|Value|
 |-|-|
@@ -498,7 +498,7 @@ Now you can go back to your laptop terminal, where you run `docker` commands and
 docker exec hdfs hdfs dfs -ls /tmp/iot
 ```
 
-The output should contain a newly created file with today’s date, like e.g. `/tmp/iot/laptops_20190524.txt`
+The output should contain a newly created file with today’s date, like e.g. `/tmp/iot/laptops_20191212.txt`
 
 Let’s see what is written to a file. Run the following command.
 
