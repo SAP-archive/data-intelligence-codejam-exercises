@@ -5,6 +5,8 @@
 0. [Prerequisite: SAP Data Hub 2.4, Dev Edition](https://developers.sap.com/tutorials/datahub-docker-v2-setup.html)
 1. [Run example pipeline](https://developers.sap.com/tutorials/datahub-docker-v2-examples.html)
 
+> In case you missed: it is important to have enough resources (at least 8GB RAM) assigned to Docker Desktop or Docker Toolbox. If in doubts, please ask.
+
 ## CodeJam warm-up
 2. [Build the first data pipeline to receive IoT data](exercise/tessel)
 
