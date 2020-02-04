@@ -21,7 +21,9 @@ Save the graph with parameters.
 
 Click on **Show Configuration** of the graph. Change the **icon** to a `at`. Save the graph.
 
-You should see an icon of the graph changed in CodeJam category.
+You should see an icon of the graph changed in `CodeJam` category.
+
+![Saved graph](cjdhitessel020.png)
 
 ## Add MQTT operator
 ### Add an MQTT Consumer
