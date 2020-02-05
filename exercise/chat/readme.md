@@ -35,11 +35,12 @@ First, let's upgrade `pip` in your `datahub` container to avoid further warning 
 docker exec datahub pip install --upgrade pip
 ```
 
+Please ignore `DEPRECATION: Python 2.7 reached the end of its life on January 1st, 2020.` warning for now.
+
 Second, let's check if it is already installed in your `datahub` container.
 ```sh
 docker exec datahub pip show textblob
 ```
-Please ignore `Python 2.7 will reach the end of its life on January 1st, 2020.` warning.
 
 Do you need to install `textblob` in your `datahub` container? If yes, then in your host terminal execute:
 ```sh
