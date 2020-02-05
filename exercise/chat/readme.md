@@ -60,10 +60,10 @@ Save the graph with parameters.
 
 Click on **Show Configuration** of the graph. Change the **icon** to a `heart`. Save the graph.
 
-You should see an icon of the graph changed in CodeJam category.
+You should see an icon of the graph changed in `CodeJam` category.
 
 ### Add a Terminal operator
-Switch to Operators tab in the Modeller. Find and add **Terminal** operator to the graph.
+Switch to Operators tab in the Modeler. Find and add a **Terminal** operator to the graph.
 
 Connect Terminal's `out1` port with its `in1` port.
 
@@ -85,15 +85,15 @@ Stop the running graph.
 
 Make sure you are in design-time view of the graph.
 
-Add an **MQTT Producer** operator to the graph. Open a configuration of this added operator.
+Add an **MQTT Producer** operator to the graph. Open a configuration of this just added operator.
 
 Modify additional parameters as following.
 
 |Field|Value|
 |-|-|
 |mqttBroker|`tcp://mqtt.eclipse.org:1883` ~~`tcp://test.mosquitto.org:1883`~~|
-|topic|`sapcodejam/<location>/chat/<your_name>`, e.g. `sapcodejam/wro/chat/Vitaliy`|
-|mqttClientID|`pcjdhc<location><your-user-ID>`, e.g. `pcjdhcwro00`|
+|topic|`sapcodejam/<location>/chat/<your_name>`, e.g. `sapcodejam/herne/chat/Vitaliy`|
+|mqttClientID|`pcjdhc<location><your-user-ID>`, e.g. `pcjdhcherne00`|
 
 >It is extremely important that **each client has a unique ID** for MQTT protocol to work properly!
 
@@ -108,7 +108,7 @@ Define parameters of the operator as following.
 |-|-|
 |mqttBroker|`tcp://mqtt.eclipse.org:1883` ~~`tcp://test.mosquitto.org:1883`~~|
 |topic|`sapcodejam/+/chat/#`|
-|mqttClientID|`ccjdhc<location><your-user-ID>`, e.g. ccjdhcwro00|
+|mqttClientID|`ccjdhc<location><your-user-ID>`, e.g. ccjdhcherne00|
 
 >It is extremely important that **each client has a unique ID** for MQTT protocol to work properly!
 >Please note, that for MQTT server this graph is a client different than the one sending IoT data from the previous graph.
