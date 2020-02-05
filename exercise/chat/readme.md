@@ -153,7 +153,7 @@ Open UI of the Wiretap, and see results of sentiment analysis there. The ___pola
 Let's visualize sentiment scores aggregated into the 5 groups: "very negative", "negative", "neutral", "positive", "very positive".
 
 ### Add JS custom operator
-You need to extract only polarity number from the Sentiment Analyser, and for that you will need a custom operator. 
+You need to extract only polarity score from the Sentiment Analyser, and for that you will need a custom operator.
 
 This time you will use a JavaScript operator. So, add **Blank JS Operator** to the chart.
 
@@ -164,7 +164,7 @@ Name|Type|Direction
 |`in`|`message`|Input
 |`out`|`float64`|Output
 
-Open Script of the operator and paste the following code from file [chat.sentiment.js](code/chat.sentiment.js).
+Open **Script** of the operator and paste the following code from the file [chat.sentiment.js](code/chat.sentiment.js).
 
 ```JavaScript
 $.setPortCallback("in",onInput);
@@ -175,14 +175,14 @@ function onInput(ctx,str) {
 }
 ```
 
-This code is simple, but shows important elements of the API of the custom JS operator:
+This code is simple, but shows important elements of an API of a custom JS operator:
 1. For every input on the port `in` the `onInput` callback function is called,
-2. Only `polarity` attribute of the received `str` received on the input port is then sent to the `out` port.
+2. Only `polarity` attribute of the `str` received on the input port is sent to the `out` port.
 
 Connect Wiretap's `out` port to `in` port of Blank JS Operator.
 
 ### Add Histogram operators
-You will use use built-in Histogram Plotter. Two operators from Utilities group are required for that, so add them to the graph:
+You will use the built-in Histogram Plotter. Two operators from **Utilities** group are required for that, so add them to the graph:
 1. **Histogram Plotter**
 2. **Histogram**
 
@@ -213,6 +213,6 @@ Save and run the graph.
 
 ## Summary
 This is the end of the scenario, where you built a graph to learn about:
-1. Terminal operator,
-2. Wiretap operator,
-3. Coding JavaScript custom operator and its API.
+1. **Terminal** operator,
+2. **Wiretap** operator,
+3. Coding **JavaScript** custom operator and its API.
