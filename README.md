@@ -17,7 +17,9 @@
     1. with [Developer edition](exercise/iot)
     2. with [Trial edition](exercise/trial/iot)
 
-## Try SAP Data Hub, trial edition
+## Check other exercises for a Trial Edition
 
-5. Get login information from me and log into [preview of SAP Data Hub 2.6, trial edition](http://bit.ly/SDH26TRIALPREVIEW)
-4. Do some tutorials from [Get Started with SAP Data Hub, trial edition](https://developers.sap.com/mission.datahub-trial.html) mission
+5. Tutorials from [Get Started with SAP Data Hub, trial edition](https://developers.sap.com/mission.datahub-trial.html) mission
+6. Tutorials from [official documentation](https://help.sap.com/viewer/29ff74dc606c41acad117003f6034ac7/2.7.latest/en-US/217dac1ce21c46d6956208d3d699f596.html)
+7. DataHub Interactive Education [(DINE)](https://github.com/SAP-samples/datahub-dine)
+8. [Integration Examples](https://github.com/SAP-samples/datahub-integration-examples)
