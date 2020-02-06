@@ -14,6 +14,8 @@
 
 3. [Chat with Sentiment Analysis](exercise/chat)
 4. [IoT lambda processing](exercise/iot)
+    1. with Developer edition
+    2. with [Trial edition](exercise/trial/iot)
 
 ## Try SAP Data Hub, trial edition
 
