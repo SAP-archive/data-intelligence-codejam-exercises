@@ -467,72 +467,12 @@ Show **Status Details** for “Process IoT data” graph and then right click on
 
 If all processes are configured properly and running, then in the new web browser window you should get SAP **Data Hub HTML Viewer**. With every new update on its input port the view will be refreshed and you should see a real-time table with all the laptops (at least one – yours) sending there CPU and Memory load readings.
 
-## [Optional] Extend the graph to persist data in HDFS
-Stop the graph **Process IoT data**.
-
-Now you want to persist received data in CSV files in HDFS for historical analysis.
-
-Data is received as a JSon payload, so it has to be reformatted to CSV format.
-
-Include **Format Converter** operator from **Utilities** category into the graph.
-
-Connect `outblob` port of **Python3Operator** with `input` port of the **Format Converter**. Open configuration of the **Format Converter** and modify the following parameters.
-
-|Field|Value|
-|-|-|
-|Target Format|`CSV`|
-|Fields|`guid,timestmp,cpu_load,mem_load,loc_timestmp`|
-
-These are the keys of JSon documents that arrive from **Python3Operator**. And we will extract only values and save them to a file.
-
-Add operator **Write File**.
-
-Connect out port `output` of “Format Converter” to the in port `inFile` of **Write File**.
-
-Open Configuration of **Write File** operator and change “service” to `hdfs`.
-
-Next open “Connection” property to edit as a “Form” and provide following connection parameters.
-
-|Field|Value|
-|-|-|
-|Configuration Type|`Manual`|
-|HDFS Host|`hdfs` (this is the name of the host defined during `docker run …` command for `hdfs` container)|
-|HDFS Port|`9000`|
-|Protocol|`rpc`|
-|User|`root`|
-
-![HDFS connection string](images/cjdhiot060.png)
-
-Click **Save**.
-
-Back to the Configuration of **Write File** operator, where you need to modify one last property as following.
-
-|Field|Value|
-|-|-|
-|Path|`/tmp/iot/laptops_<date>.txt`|
-
-Save the graph.
-
-### Run graphs and check HDFS
-Run both graphs “Process IoT data” and “IoT Device streaming…”.
-
-Now you can go back to your laptop terminal, where you run `docker` commands and execute the following.
-
-```sh
-docker exec hdfs hdfs dfs -ls /tmp/iot
-```
-
-The output should contain a newly created file with today’s date, like e.g. `/tmp/iot/laptops_20191212.txt`
-
-Let’s see what is written to a file. Run the following command.
-
-```sh
-docker exec hdfs hdfs dfs -cat /tmp/iot/laptops_*.txt | tail
-```
+## [Optional] Extend the graph to persist data in a data lake
+This part of tutorial is not yet finished as it is significant difference comparing to the original way done using the developer edition.
 
 ## Summary
 This is the end of the scenario, where we built two graphs:
 1.	to simulate IoT device with CPU and Memory loads as sensors
 2.	to receive data from all IoT devices and build two processing flows in one graph:
- *	producing real-time dashboard, and
- * storing historical data in HDFS for later analysis.
+ * producing real-time dashboard, and
+ * storing historical data in data lake for later analysis (___to be finalized___).
