@@ -63,13 +63,13 @@ The build process with take about 3-5 minutes to complete. The message should ch
 
 In the meantime you can click on **Refresh** icon of the **Trace** to see new messages.
 
-![Build finished](images/cjdhiot010.jpg)
+![Build finished](images/cjdhiot010.png)
 
 What happened is that Data Hub built a new Docker image based on your definition and pushed it to the central container registry to store.
 
 ## Build custom operator ”Laptop as IoT device”
 ### Create a new custom operator
-Go to the Modeler window. Switch to **Operators** and click on **+ (Create operator)** icon.
+You should be in the Data Hub Modeler window. Switch to **Operators** and click on **+ (Create operator)** icon.
 
 Populate fields as following:
 
@@ -77,13 +77,10 @@ Populate fields as following:
 |-|-|
 |Name|`codejam.iot.laptop`|
 |Display name|`Laptop as IoT device`|
-|Base Operator|`Python3Operator`|
+|Base Operator|`Python3 Operator`|
 |Category|`CodeJam` (type it, if not existing)|
 
-Click **Ok**
-
-### Tag the operator
-...
+Click **Ok**.
 
 ### Configure the operator
 Scroll to **Output Ports**. Add one new output port.
@@ -93,22 +90,15 @@ Scroll to **Output Ports**. Add one new output port.
 |name|`payload`|
 |type|`string`|
 
-Scroll to **Operator Configuration -> Parameters**. Add one new parameter.
+Switch to **Tags**. Add a new tag and select `psutil` from the list.
+
+Switch to **Configuration** and click on **Edit** icon of **Parameters**.
+
+Add one new property.
 
 |Field|Value|
 |-|-|
 |name|`intervalMs`|
-|type|`String`|
-|default value|`2000`|
-
-Under “Operator Configuration” click on **Auto Propose**.
-
-The “Type” will change to `codejam.iot.laptop`. Click edit icon **Open Type Schema** next to it.
-
-On the **Edit type** form click on `intervalMs` property and complete configuration with:
-
-|Field|Value|
-|-|-|
 |Title|`Interval (ms)`|
 |Description|`Interval in microseconds`|
 |Data type|`Number`|
@@ -116,7 +106,11 @@ On the **Edit type** form click on `intervalMs` property and complete configurat
 
 Click **OK** to close the type configuration.
 
-Scroll to **Script** and in Inline Editor paste code [`codejam.iot.laptop.py`](code/codejam.iot.laptop.py)
+Type **Value** equal `2000`.
+
+![Parameters](images/cjdhiot018.png)
+
+Click **Script** and in Inline Editor paste code [`codejam.iot.laptop.py`](code/codejam.iot.laptop.py)
 
 ```python
 import psutil   # https://pypi.python.org/pypi/psutil
@@ -163,7 +157,7 @@ Click on an area (or puzzle **icon**) next to the operator name...
 
 ...and change its source to an icon `laptop`. Click **Ok**.
 
-Save the operator's configuration and close the tab “Laptop as IoT device”.
+**Save** the operator's configuration and close the tab “Laptop as IoT device”.
 
 On the left in “Operators” tab scroll to the group category “CodeJam” and check the new operator **Laptop as IoT device** is there.
 
