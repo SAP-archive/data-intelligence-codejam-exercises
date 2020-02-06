@@ -13,8 +13,8 @@
 ## CodeJam tutorials
 
 3. [Chat with Sentiment Analysis](exercise/chat)
-4. [IoT lambda processing](exercise/iot)
-    1. with Developer edition
+4. IoT lambda processing
+    1. with [Developer edition](exercise/iot)
     2. with [Trial edition](exercise/trial/iot)
 
 ## Try SAP Data Hub, trial edition
