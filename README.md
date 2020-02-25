@@ -23,3 +23,11 @@
 6. Tutorials from [official documentation](https://help.sap.com/viewer/29ff74dc606c41acad117003f6034ac7/2.7.latest/en-US/217dac1ce21c46d6956208d3d699f596.html)
 7. DataHub Interactive Education [(DINE)](https://github.com/SAP-samples/datahub-dine)
 8. [Integration Examples](https://github.com/SAP-samples/datahub-integration-examples)
+
+### How to obtain support
+Support for the content in this repository is available during CodeJam events, for which this content has been designed. Otherwise, this content is provided "as-is" with no other support.
+
+### License
+Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+
+This file is licensed under the SAP Sample Code License except as noted otherwise in the [LICENSE](LICENSE.md) file.
