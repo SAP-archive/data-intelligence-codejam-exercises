@@ -1,4 +1,4 @@
-# SAP Data Hub - CodeJam exercises
+# Data Engineering with SAP Data Hub - CodeJam exercises
 
 ## Standard tutorials
 
