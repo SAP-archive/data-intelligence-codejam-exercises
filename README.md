@@ -1,16 +1,16 @@
-# Data Engineering with SAP Data Hub - CodeJam exercises
+# Data Engineering with SAP Data Hub - CodeJam Exercises
 
-## Standard tutorials
+## Standard Tutorials
 
 0. [Prerequisite: SAP Data Hub 2.4, Dev Edition](https://developers.sap.com/tutorials/datahub-docker-v2-setup.html)
 1. [Run example pipeline](https://developers.sap.com/tutorials/datahub-docker-v2-examples.html)
 
 > In case you missed: it is important to have enough resources (at least 8GB RAM) assigned to Docker Desktop or Docker Toolbox. If in doubts, please ask.
 
-## CodeJam warm-up
+## CodeJam Warm-up
 2. [Build the first data pipeline to receive IoT data](exercise/tessel)
 
-## CodeJam tutorials
+## CodeJam Tutorials
 
 3. [Chat with Sentiment Analysis](exercise/chat)
 4. IoT lambda processing
@@ -30,4 +30,4 @@ Support for the content in this repository is available during CodeJam events, f
 # License
 Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
 
-This file is licensed under the SAP Sample Code License except as noted otherwise in the [LICENSE](LICENSE.md) file.
+This file is licensed under the SAP Sample Code License except as noted otherwise in the [LICENSE](LICENSE) file.
