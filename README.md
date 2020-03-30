@@ -1,7 +1,7 @@
-# Data Engineering with SAP Data Hub - CodeJam Exercises
+# Data Engineering with SAP Data Intelligence - CodeJam Exercises
 
 ## Description
-This repository contains the material for the CodeJam on SAP Data Hub (to be renamed to SAP Data Intelligence with ver. 3.x).
+This repository contains the material for the CodeJam on SAP Data Intelligence (known as SAP Data Hub before ver. 3.x).
 
 ## Requirements
 You need to have your own laptop with administration rights.
