@@ -23,7 +23,7 @@
 <!-- /TOC -->
 
 ## Prerequisites
-You are using SAP Data Hub 2.4, trial edition, and have a developer user `dev<your-number>`, like `dev00`, in tenant `default`.
+You are using SAP Data Intelligence 3.0, trial edition, and have a developer user `dev<your-number>`, like `dev00`, in tenant `default`.
 
 ## Create a Docker image with `psutil`
 `psutil` is a cross-platform system monitoring in Python: https://github.com/giampaolo/psutil
