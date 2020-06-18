@@ -10,11 +10,11 @@ It is important to have enough resources (at least 8GB RAM) assigned to Docker D
 
 ## Download and installation (own Dev system)
 0. [Prerequisite: SAP Data Hub 2.4, Dev Edition](https://developers.sap.com/tutorials/datahub-docker-v2-setup.html)
-1. [Run example pipeline](https://developers.sap.com/tutorials/datahub-docker-v2-examples.html)
 
 ## Exercises
 
 ### CodeJam Warm-up
+1. [Run example pipeline](https://developers.sap.com/tutorials/datahub-docker-v2-examples.html) -- looks the same in both Dev and Trial editions.
 2. [Build the first data pipeline to receive IoT data](exercise/tessel)
 
 ### CodeJam Tutorials
@@ -26,7 +26,7 @@ It is important to have enough resources (at least 8GB RAM) assigned to Docker D
 
 ### Check other exercises for a Trial Edition
 
-5. Tutorials from [Get Started with SAP Data Intelligence, trial edition](https://developers.sap.com/group.dataintelligence-trial-2-start.html) mission
+5. Complete all tutorials from [Get Started with SAP Data Intelligence, trial edition](https://developers.sap.com/mission.dataintelligence-trial.html) mission
 6. Tutorials from [official documentation](https://help.sap.com/viewer/aff95eebc2e04c44816e6ff0d21c3c88/3.0.latest/en-US/217dac1ce21c46d6956208d3d699f596.html)
 7. DataHub Interactive Education [(DINE)](https://github.com/SAP-samples/datahub-dine)
 8. [Integration Examples](https://github.com/SAP-samples/datahub-integration-examples)
